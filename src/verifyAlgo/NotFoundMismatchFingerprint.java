@@ -1,8 +1,10 @@
 package verifyAlgo;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -13,10 +15,22 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class FindMismatchFingerprint {
+public class NotFoundMismatchFingerprint {
 	public static void main(String[] args) throws Exception{
-		JSONArray songsMetaData = convertToJSONArray(System.getProperty("user.dir") + "/songsData.json");
-		String matchResult = readAll(new FileReader(System.getProperty("user.dir") + "/fingData.json"));
+		  
+		    
+		 try {
+		      ProcessBuilder pb = new ProcessBuilder("/Users/admin/Downloads/attachments/shell.sh");
+		      Process p = pb.start();     // Start the process.
+		      p.waitFor();                // Wait for the process to finish.
+		      
+		      System.out.println("Script executed successfully");
+		    } catch (Exception e) {
+		      e.printStackTrace();
+		      }
+		    
+		JSONArray songsMetaData = convertToJSONArray(System.getProperty("user.dir") + "/fgdata.json");
+		String matchResult = readAll(new FileReader(System.getProperty("user.dir") + "/fgresult.json"));
 		
 		String[] jsons = matchResult.split("\n");
 		List<String> validJSONS = new ArrayList<String>();
@@ -26,13 +40,16 @@ public class FindMismatchFingerprint {
 			}
 		}
 		jsons = validJSONS.toArray(new String[validJSONS.size()]);
-		
+		File file = new File("FPmismatchnotfound.txt"); //Your file
+    	FileOutputStream fos = new FileOutputStream(file);
+    	PrintStream ps = new PrintStream(fos);
+    	System.setOut(ps);
 		for(int i = 0; i < songsMetaData.length() && i < jsons.length; i++){
 			if(!jsons[i].trim().equalsIgnoreCase("No Match Found")){
 				JSONObject json = new JSONObject(jsons[i]);
 				if(get(json, "album") == null && get(json, "title") == null)
 				{
-					System.out.println((i+1) + "No Match Found");
+					System.out.println((i+1) + "   No Match Found");
 				}
 				else
 				{

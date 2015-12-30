@@ -17,8 +17,12 @@ public class Found {
 	public static void main(String[] args) throws Exception{
 		//JSONArray songsMetaData = convertToJSONArray(System.getProperty("user.dir") + "/mashringins/MashupsongsMetaData.json");
 		//String matchResult = readAll(new FileReader(System.getProperty("user.dir") + "/mashringins/MashupResult.json"));
-		JSONArray songsMetaData = convertToJSONArray(System.getProperty("user.dir") + "/albumsongsMetaData.json");
-		String matchResult = readAll(new FileReader(System.getProperty("user.dir") + "/AlbumResult.json"));
+		//JSONArray songsMetaData = convertToJSONArray(System.getProperty("user.dir") + "/songsMetaData.json");
+		//String matchResult = readAll(new FileReader(System.getProperty("user.dir") + "/songsResult.json"));
+		//JSONArray songsMetaData = convertToJSONArray(System.getProperty("user.dir") + "/set2Data.json");
+		//String matchResult = readAll(new FileReader(System.getProperty("user.dir") + "/setResult.json"));
+		JSONArray songsMetaData = convertToJSONArray(System.getProperty("user.dir") + "/akhil.json");
+		String matchResult = readAll(new FileReader(System.getProperty("user.dir") + "/akhilResult.json"));
 		String[] jsons = matchResult.split("\n");
 		List<String> validJSONS = new ArrayList<String>();
 		for(int i = 0; i < jsons.length; i++){
